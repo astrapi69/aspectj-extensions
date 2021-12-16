@@ -58,4 +58,15 @@ public class JoinPointExtensions {
         return parameterNamesAndValues;
     }
 
+    public static JointPointInfo getJointPointInfo(JoinPoint joinPoint) {
+        return JointPointInfo.builder()
+                .parameterTypes(((MethodSignature)joinPoint.getSignature()).getParameterTypes())
+                .parameterNames(((MethodSignature)joinPoint.getSignature()).getParameterNames())
+                .parameterValues(joinPoint.getArgs())
+                .method(((MethodSignature)joinPoint.getSignature()).getMethod())
+                .target(joinPoint.getTarget())
+                .kind(joinPoint.getKind())
+                .build();
+    }
+
 }
